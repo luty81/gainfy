@@ -1,4 +1,4 @@
-#Gainfy
+# Gainfy
 
 Follows your money growth.
 
