@@ -11,8 +11,8 @@ export function github (user) {
 }    
 
 
-// export default function quote(ticker) {
-//     return { 
-//         lastPrice: getLastPrice(ticker)
-//     }
-// }
+export default function quote(ticker) {
+    return { 
+        lastPrice: getLastPrice(ticker)
+    }
+}

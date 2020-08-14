@@ -5,6 +5,7 @@ import { Table, Header, Container, Divider } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { github } from '../lib/trader.js'
+import Post from './posts/[id]'
 
 // export async function getStaticProps() {
 //   const lastPrice = getLastPrice('PETR4.SA')
@@ -13,7 +14,7 @@ import { github } from '../lib/trader.js'
 
 
 // export async function getServerSideProps(context) {
-//     const lastPrice = getLastPrice('PETR4.SA')
+//     const lastPrice = await getLastPrice('PETR4.SA')
 //     return {
 //       props: {
 //         lastPrice
@@ -41,9 +42,9 @@ export default function Home({ lastPrice }) {
 
       <Container>
           <Header as='h3' content='Repositories' textAlign='center' />   
-          
-          {<br/>}
-          
+
+          <br/>
+
           <Table celled fixed sortable>
             <Table.Header>
               <Table.HeaderCell>Name</Table.HeaderCell>
