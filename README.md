@@ -5,7 +5,7 @@ Follows your money growth.
 ### Build & Run
 
 ```bash
-npm install
+npm update; npm install
 
 npm run dev
 ```
