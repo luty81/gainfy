@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p $PORT",
     "build": "next build",
     "start": "next start"
   },
@@ -12,18 +12,14 @@
     "date-fns": "^2.15.0",
     "fs": "0.0.1-security",
     "gray-matter": "^4.0.2",
-    "next": "9.3.5",
+    "next": "latest",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "remark": "^12.0.1",
     "remark-html": "^12.0.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^1.1.1",
+    "semantic-ui-react": "^1.2.0",
     "swr": "^0.3.0"
   },
-  "devDependencies": {
-    "@types/node": "^14.0.27",
-    "@types/react": "^16.9.46",
-    "typescript": "^3.9.7"
-  }
+  "devDependencies": {}
 }

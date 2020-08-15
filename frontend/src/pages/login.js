@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Layout, { setTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 const LoginForm = () => (

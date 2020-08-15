@@ -4,38 +4,54 @@ import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
 
-
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export async function getSortedPostsData(id) {
-
-    const fullPath = path.join(postsDirectory, `${id}.md`)
-    const fileContents = fs.readFileSync(fullPath, 'utf-8')
-    const matterResult = matter(fileContents)
-
-    const htmlContent = 
-        (await remark()
-            .use(html)
-            .process(matterResult.content))
-        .toString()
-
-    return { 
-        id,
-        htmlContent, 
-        ...matterResult.data
-    }
-    // return allPostsData.sort((a, b) => {
-    //     return a.date < b.date ? 1 : -1
-    // })
+export function getPostsOrderedByDate() {
+    const files = fs.readdirSync(postsDirectory)
+    const allPosts = files.map(file => getPostData(file.replace(/\.md$/, '')))
+    return allPosts.sort((a, b) => { return a.date < b.date ? 1 : -1 })
 }
 
-export function getAllPostsIds() {
-    const filenames = fs.readdirSync(postsDirectory)
-    return filenames.map(fileName => { 
+export function getPostData(id) {
+    const md = markdown(id)
+    
+    return { 
+        id,
+        ...md.data
+    }
+}
+
+export async function getPostDataAsync(id) {
+    const md = markdown(id)
+    const htmlContent = (await Html().process(md.content)).toString()
+    return {
+        id,
+        htmlContent,
+        ...md.data
+    }
+}
+
+function Html() {
+    return remark().use(html)
+}
+
+function markdown(mdPageId) {
+    const fullPath = path.join(postsDirectory, `${mdPageId}.md`)
+    const fileContents = fs.readFileSync(fullPath, 'utf-8')
+    return matter(fileContents)
+}
+
+export async function getAllPostsIds() {
+
+    const res = await fetch("https://run.mocky.io/v3/64ea86cb-7c38-4d2e-9a30-255df4d13062")
+    const allPosts = await res.json()
+    
+    return allPosts.map(post => {
         return {
             params: {
-                id: fileName.replace(/\.md$/, '')
+                id: post.id
             }
         }
     })
 }
+        
