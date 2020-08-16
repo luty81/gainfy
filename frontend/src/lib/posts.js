@@ -6,10 +6,11 @@ import html from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export function getPostsOrderedByDate() {
-    const files = fs.readdirSync(postsDirectory)
-    const allPosts = files.map(file => getPostData(file.replace(/\.md$/, '')))
-    return allPosts.sort((a, b) => { return a.date < b.date ? 1 : -1 })
+export async function getPostsOrderedByDate() {
+
+    const allPostsIds = await getAllPostsIds()
+    const allPosts = allPostsIds.map(p => getPostData(p.params.id))
+    return allPosts.sort((x, y) => x.date < y.date ? 1 : -1)
 }
 
 export function getPostData(id) {
